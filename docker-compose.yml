@@ -1,0 +1,8 @@
+version: "3"
+services:
+  sbrackets-app:
+    build: ./
+    container_name: sbrackets-app
+    ports:
+      - 8080:8080
+    restart: unless-stopped
