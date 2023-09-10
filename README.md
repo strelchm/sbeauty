@@ -18,6 +18,7 @@ Task 4 SB challenge: Text operations API with brackets check endpoint.
 **App starting**
 
 Run the next command from root directory to build and start program: 
+
 **1)** with Gradle:
 ```
 sudo gradlew clean build bootRun
