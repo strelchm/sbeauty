@@ -3,9 +3,10 @@ package ru.strelchm.sbrackets.service.impl;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import ru.strelchm.sbrackets.stack.Stack;
 import ru.strelchm.sbrackets.service.BracketsVerificationService;
-import ru.strelchm.sbrackets.service.impl.stack.BracketPairStackImpl;
-import ru.strelchm.sbrackets.service.impl.stack.RemoveOperationResult;
+import ru.strelchm.sbrackets.stack.BracketPairStackImpl;
+import ru.strelchm.sbrackets.stack.RemoveOperationResult;
 
 @Slf4j
 @Component
@@ -16,19 +17,19 @@ public class BracketsVerificationServiceImpl implements BracketsVerificationServ
 
     @Override
     public boolean verify(@NonNull String text) {
-        BracketPairStackImpl stack = new BracketPairStackImpl();
+        Stack stack = new BracketPairStackImpl();
 
         for (char value : text.toCharArray()) {
-            if (value == LEFT_PARENTHESES) {
-                stack.add();
-            } else if (value == RIGHT_PARENTHESES) {
-                RemoveOperationResult removeOperationResult = stack.remove();
-                if (!removeOperationResult.isSuccess()) {
-                    log.warn(removeOperationResult.getErrorMessage());
-                    return false;
+            switch (value) {
+                case LEFT_PARENTHESES -> stack.push();
+                case RIGHT_PARENTHESES -> {
+                    RemoveOperationResult removeOperationResult = stack.popIfPossible();
+                    if (!removeOperationResult.isSuccess()) {
+                        log.warn(removeOperationResult.getErrorMessage());
+                        return false;
+                    }
                 }
-            } else {
-                stack.markEachElementAsNotEmpty();
+                default -> stack.markAll();
             }
         }
 

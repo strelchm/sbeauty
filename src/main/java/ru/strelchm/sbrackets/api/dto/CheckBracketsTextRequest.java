@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CheckBracketsRequest {
+public class CheckBracketsTextRequest {
     @NotEmpty
     private String text;
 }

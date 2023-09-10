@@ -1,10 +1,10 @@
-package ru.strelchm.sbrackets.service.impl.stack;
+package ru.strelchm.sbrackets.stack;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import static ru.strelchm.sbrackets.service.impl.stack.RemoveOperationResult.RemoveResultType.FAILED;
-import static ru.strelchm.sbrackets.service.impl.stack.RemoveOperationResult.RemoveResultType.SUCCESS;
+import static ru.strelchm.sbrackets.stack.RemoveOperationResult.RemoveResultType.FAILED;
+import static ru.strelchm.sbrackets.stack.RemoveOperationResult.RemoveResultType.SUCCESS;
 
 @AllArgsConstructor
 public class RemoveOperationResult {
