@@ -15,15 +15,15 @@ Task 4 SB challenge: Text operations API with brackets check endpoint.
 - OpenAPI (Springdoc)
 - JUnit 5
 
-**App starting **
+**App starting**
 
 Run the next command from root directory to build and start program: 
-1) with Gradle:
+**1)** with Gradle:
 ```
 sudo gradlew clean build bootRun
 ```
 
-2) with Docker:
+**2)** with Docker:
 ```
 sudo docker-compose up
 ```
