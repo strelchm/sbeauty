@@ -11,7 +11,9 @@ import ru.strelchm.sbrackets.api.dto.CheckBracketsTextRequest;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static ru.strelchm.sbrackets.api.TextOperationsController.CHECK_BRACKETS_MAPPING_PATH;
 import static ru.strelchm.sbrackets.api.TextOperationsController.ROOT_MAPPING_PATH;
 

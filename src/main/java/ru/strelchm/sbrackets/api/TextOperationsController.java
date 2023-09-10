@@ -8,10 +8,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 import ru.strelchm.sbrackets.api.dto.CheckBracketsResponse;
 import ru.strelchm.sbrackets.api.dto.CheckBracketsTextRequest;
-import ru.strelchm.sbrackets.stack.BracketPairStackException;
 import ru.strelchm.sbrackets.mapper.TextOperationsMapper;
 import ru.strelchm.sbrackets.service.BracketsVerificationService;
 
