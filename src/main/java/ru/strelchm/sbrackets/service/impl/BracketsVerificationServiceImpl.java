@@ -3,10 +3,11 @@ package ru.strelchm.sbrackets.service.impl;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import ru.strelchm.sbrackets.stack.Stack;
 import ru.strelchm.sbrackets.service.BracketsVerificationService;
-import ru.strelchm.sbrackets.stack.BracketPairStackImpl;
-import ru.strelchm.sbrackets.stack.RemoveOperationResult;
+import ru.strelchm.sbrackets.stack.BracketPairStackException;
+import ru.strelchm.sbrackets.stack.impl.BracketPair;
+import ru.strelchm.sbrackets.stack.BracketPairStack;
+import ru.strelchm.sbrackets.stack.impl.BracketPairStackImpl;
 
 @Slf4j
 @Component
@@ -17,26 +18,31 @@ public class BracketsVerificationServiceImpl implements BracketsVerificationServ
 
     @Override
     public boolean verify(@NonNull String text) {
-        Stack stack = new BracketPairStackImpl();
+        BracketPairStack stack = new BracketPairStackImpl();
+        String errorMessage = null;
 
-        for (char value : text.toCharArray()) {
-            switch (value) {
-                case LEFT_PARENTHESES -> stack.push();
-                case RIGHT_PARENTHESES -> {
-                    RemoveOperationResult removeOperationResult = stack.popIfPossible();
-                    if (!removeOperationResult.isSuccess()) {
-                        log.warn(removeOperationResult.getErrorMessage());
-                        return false;
-                    }
+        try {
+            for (char value : text.toCharArray()) {
+                switch (value) {
+                    case LEFT_PARENTHESES -> stack.push(new BracketPair());
+                    case RIGHT_PARENTHESES -> stack.pop();
+                    default -> stack.markAll();
                 }
-                default -> stack.markAll();
             }
+        } catch (BracketPairStackException ex) {
+            errorMessage = ex.getMessage();
         }
 
-        boolean empty = stack.isEmpty();
-        if (!empty) {
-            log.warn("String contains open brackets without closed");
+        boolean error = errorMessage != null;
+        if (!error && !stack.isEmpty()) {
+            errorMessage = "String contains open brackets without closed";
+            error = true;
         }
-        return empty;
+
+        if (error) {
+            log.warn(errorMessage);
+        }
+
+        return !error;
     }
 }

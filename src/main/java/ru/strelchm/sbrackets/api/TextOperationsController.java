@@ -9,8 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-import ru.strelchm.sbrackets.api.dto.CheckBracketsTextRequest;
 import ru.strelchm.sbrackets.api.dto.CheckBracketsResponse;
+import ru.strelchm.sbrackets.api.dto.CheckBracketsTextRequest;
+import ru.strelchm.sbrackets.stack.BracketPairStackException;
 import ru.strelchm.sbrackets.mapper.TextOperationsMapper;
 import ru.strelchm.sbrackets.service.BracketsVerificationService;
 
@@ -39,6 +40,10 @@ public class TextOperationsController {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(value = HttpStatus.OK)
     public CheckBracketsResponse handleBadRequestExceptions(MethodArgumentNotValidException ex) {
+        return getCheckBracketsResponse(ex);
+    }
+
+    private CheckBracketsResponse getCheckBracketsResponse(Exception ex) {
         log.error(ex.getMessage(), ex);
         return textOperationsMapper.toCheckBracketsResponse(Boolean.FALSE);
     }

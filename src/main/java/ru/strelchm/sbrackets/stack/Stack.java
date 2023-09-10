@@ -1,9 +1,13 @@
 package ru.strelchm.sbrackets.stack;
 
-public interface Stack<T, R> {
-    void push(T newElement);
+/**
+ * Stack of elements
+ * @param <E> - element type
+ */
+public interface Stack<E> {
+    void push(E newElement);
 
-    R popIfPossible();
+    E pop();
 
     boolean isEmpty();
 }
