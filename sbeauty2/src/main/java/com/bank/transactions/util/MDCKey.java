@@ -1,4 +1,3 @@
-
 package com.bank.transactions.util;
 
 public enum MDCKey {

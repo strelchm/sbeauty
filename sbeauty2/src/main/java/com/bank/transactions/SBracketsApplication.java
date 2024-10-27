@@ -8,8 +8,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @SpringBootApplication
 public class SBracketsApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SBracketsApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(SBracketsApplication.class, args);
+    }
 }

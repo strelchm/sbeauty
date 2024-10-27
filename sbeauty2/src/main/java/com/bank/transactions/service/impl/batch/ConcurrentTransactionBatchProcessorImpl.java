@@ -1,4 +1,3 @@
-
 package com.bank.transactions.service.impl.batch;
 
 import com.bank.transactions.data.model.Transaction;

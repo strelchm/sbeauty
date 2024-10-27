@@ -2,12 +2,8 @@ package com.bank.transactions.data.config.props;
 
 import jakarta.validation.constraints.NotNull;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
-
-import java.util.concurrent.ForkJoinPool;
 
 @Validated
 @Component
@@ -17,7 +13,7 @@ public class ThreadPoolConfigProperties {
     @NotNull
     private Integer parallelism;
 
-    public @NotNull Integer getParallelism() {
+    public Integer getParallelism() {
         return parallelism;
     }
 

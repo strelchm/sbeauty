@@ -1,4 +1,3 @@
-
 package com.bank.transactions.service.impl.batch;
 
 import com.bank.transactions.data.model.Transaction;
@@ -21,6 +20,6 @@ public class SimpleTransactionBatchConcurrentProcessorImpl implements Transactio
 
     @Override
     public void processTransactions(Collection<Transaction> transactions) {
-            transactions.forEach(transactionProcessor::processTransaction);
+        transactions.forEach(transactionProcessor::processTransaction);
     }
 }

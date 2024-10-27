@@ -1,4 +1,3 @@
-
 package com.bank.transactions.data.model;
 
 public enum TransactionStatus {

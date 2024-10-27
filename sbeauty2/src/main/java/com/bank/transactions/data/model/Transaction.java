@@ -1,4 +1,3 @@
-
 package com.bank.transactions.data.model;
 
 import java.math.BigDecimal;

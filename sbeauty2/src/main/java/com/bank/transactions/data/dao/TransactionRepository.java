@@ -1,4 +1,3 @@
-
 package com.bank.transactions.data.dao;
 
 import com.bank.transactions.data.model.Transaction;
