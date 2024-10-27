@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 
 import java.util.Optional;
 
@@ -16,7 +15,6 @@ import static com.bank.transactions.data.model.TransactionStatus.*;
 import static com.bank.transactions.util.MDCKey.TRANSACTION_ID;
 
 @Service
-@Validated
 public class TransactionProcessorImpl implements TransactionProcessor {
 
     private static final Logger logger = LoggerFactory.getLogger(TransactionProcessorImpl.class);

@@ -11,13 +11,13 @@ import org.springframework.validation.annotation.Validated;
 public class ThreadPoolConfigProperties {
 
     @NotNull
-    private Integer parallelism;
+    private Integer maxParallelism;
 
-    public Integer getParallelism() {
-        return parallelism;
+    public Integer getMaxParallelism() {
+        return maxParallelism;
     }
 
-    public void setParallelism(@NotNull Integer parallelism) {
-        this.parallelism = parallelism;
+    public void setMaxParallelism(@NotNull Integer maxParallelism) {
+        this.maxParallelism = maxParallelism;
     }
 }

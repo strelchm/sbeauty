@@ -1,5 +1,10 @@
 package com.bank.transactions.data.model;
 
+import com.bank.transactions.util.MDCKey;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -9,6 +14,7 @@ import static com.bank.transactions.data.model.TransactionStatus.PROCESSED;
 
 public class Transaction {
     private static final int LARGE_TRANSACTION_AMOUNT_MIN = 10_000;
+    private static final Logger logger = LoggerFactory.getLogger(Transaction.class);
 
     private final String id;
     private final BigDecimal amount;
@@ -65,5 +71,16 @@ public class Transaction {
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        MDC.put(MDCKey.TRANSACTION_ID.getKeyName(), getId());
+        try {
+            logger.warn("Finalize transaction");
+        } finally {
+            MDC.remove(MDCKey.TRANSACTION_ID.getKeyName());
+        }
     }
 }

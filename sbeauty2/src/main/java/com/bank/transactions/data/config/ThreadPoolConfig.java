@@ -13,6 +13,6 @@ public class ThreadPoolConfig {
     @Bean
     @ConditionalOnProperty(prefix = "transaction.processor", name = "type", havingValue = "PARALLEL")
     public ForkJoinPool transactionProcessingThreadPool(ThreadPoolConfigProperties props) {
-        return new ForkJoinPool(props.getParallelism());
+        return new ForkJoinPool(Math.max(Runtime.getRuntime().availableProcessors(), props.getMaxParallelism()));
     }
 }
