@@ -2,6 +2,7 @@
 package com.bank.transactions.data.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import static com.bank.transactions.data.model.TransactionStatus.PENDING;
@@ -11,10 +12,10 @@ public class Transaction {
 
     private final String id;
     private final BigDecimal amount;
-    private final String date;
+    private final LocalDate date;
     private TransactionStatus status;
 
-    public Transaction(String id, BigDecimal amount, String date, TransactionStatus status) {
+    public Transaction(String id, BigDecimal amount, LocalDate date, TransactionStatus status) {
         this.id = id;
         this.amount = amount;
         this.date = date;
@@ -29,7 +30,7 @@ public class Transaction {
         return amount;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 

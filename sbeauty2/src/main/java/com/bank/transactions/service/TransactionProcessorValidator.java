@@ -5,5 +5,5 @@ import com.bank.transactions.data.model.Transaction;
 
 public interface TransactionProcessorValidator {
 
-    boolean validate(Transaction transaction);
+    boolean validateForProcessing(Transaction transaction);
 }

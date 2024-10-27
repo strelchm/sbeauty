@@ -5,37 +5,55 @@ import com.bank.transactions.data.dao.TransactionRepository;
 import com.bank.transactions.data.model.Transaction;
 import com.bank.transactions.service.TransactionProcessor;
 import com.bank.transactions.service.TransactionProcessorValidator;
-import com.bank.transactions.util.Logger;
-import org.springframework.stereotype.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
+
+import java.util.Optional;
 
 import static com.bank.transactions.data.model.TransactionStatus.*;
+import static com.bank.transactions.util.MDCKey.TRANSACTION_ID;
 
-@Component
+@Service
+@Validated
 public class TransactionProcessorImpl implements TransactionProcessor {
+
+    private static final Logger logger = LoggerFactory.getLogger(TransactionProcessorImpl.class);
 
     private final TransactionRepository repository;
     private final TransactionProcessorValidator validator;
-    private final Logger logger;
 
-    public TransactionProcessorImpl(TransactionRepository repository, TransactionProcessorValidator validator, Logger logger) {
+    public TransactionProcessorImpl(TransactionRepository repository, TransactionProcessorValidator validator) {
         this.repository = repository;
         this.validator = validator;
-        this.logger = logger;
     }
 
-//    @Async
+    //    @Async
     @Override
     public void processTransaction(Transaction transaction) {
-        if (validator.validate(transaction)) {
+        putMDCIfNeeded(transaction);
+
+        if (!validator.validateForProcessing(transaction)) {
             return;
         }
+
         try {
             transaction.setStatus(IN_PROGRESS);
             repository.updateTransaction(transaction);
             transaction.setStatus(PROCESSED);
-        } catch (Exception e) {
+        } catch (Exception ex) {
             transaction.setStatus(ERROR);
-            logger.log("Error processing transaction: " + e.getMessage());
+            logger.error("Error processing transaction: {}", ex.getMessage(), ex);
+        } finally {
+            MDC.remove(TRANSACTION_ID.getKeyName());
         }
+    }
+
+    private static void putMDCIfNeeded(Transaction transaction) {
+        Optional.ofNullable(transaction)
+                .map(Transaction::getId)
+                .ifPresent(id -> MDC.put(TRANSACTION_ID.getKeyName(), id));
     }
 }
