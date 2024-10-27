@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * One thread implementation of transaction repository
+ */
 @ConditionalOnProperty(prefix = "transaction.repository", name = "type", havingValue = "SIMPLE")
 @Repository
 public class SimpleTransactionRepository implements TransactionRepository {

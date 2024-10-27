@@ -5,6 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 
+/**
+ * Transaction repository
+ */
 @Repository
 public interface TransactionRepository {
 

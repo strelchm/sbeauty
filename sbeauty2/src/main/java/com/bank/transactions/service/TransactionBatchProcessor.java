@@ -6,5 +6,9 @@ import java.util.Collection;
 
 public interface TransactionBatchProcessor {
 
+    /**
+     * Transaction processor that handles batches of transactions
+     * @param transactions - transactions array
+     */
     void processTransactions(Collection<Transaction> transactions);
 }

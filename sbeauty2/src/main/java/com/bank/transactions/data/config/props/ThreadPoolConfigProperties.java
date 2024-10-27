@@ -5,11 +5,15 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
+
 @Validated
 @Component
 @ConfigurationProperties(prefix = "thread-pool.transaction-processing")
 public class ThreadPoolConfigProperties {
 
+    /**
+     * Property for parallel transaction processing
+     */
     @NotNull
     private Integer maxParallelism;
 

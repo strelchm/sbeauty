@@ -9,6 +9,9 @@ import org.springframework.util.ConcurrentReferenceHashMap;
 import java.util.Collection;
 import java.util.Map;
 
+/**
+ * Concurrent transaction repository based on synchronized hash map with soft references
+ */
 @Repository
 @ConditionalOnProperty(prefix = "transaction.repository", name = "type", havingValue = "PARALLEL", matchIfMissing = true)
 public class ConcurrentTransactionRepository implements TransactionRepository {
