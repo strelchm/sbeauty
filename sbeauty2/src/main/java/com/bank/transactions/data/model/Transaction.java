@@ -1,9 +1,7 @@
 package com.bank.transactions.data.model;
 
-import com.bank.transactions.util.MDCKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.MDC;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -73,14 +71,14 @@ public class Transaction {
         return Objects.hashCode(id);
     }
 
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-        MDC.put(MDCKey.TRANSACTION_ID.getKeyName(), getId());
-        try {
-            logger.warn("Finalize transaction");
-        } finally {
-            MDC.remove(MDCKey.TRANSACTION_ID.getKeyName());
-        }
-    }
+//    @Override
+//    protected void finalize() throws Throwable {
+//        super.finalize();
+//        MDC.put(MDCKey.TRANSACTION_ID.getKeyName(), getId());
+//        try {
+//            logger.warn("Finalize transaction");
+//        } finally {
+//            MDC.remove(MDCKey.TRANSACTION_ID.getKeyName());
+//        }
+//    }
 }

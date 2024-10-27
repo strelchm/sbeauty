@@ -6,7 +6,8 @@ public interface TransactionProcessorValidator {
 
     /**
      * Single transaction validator for processing
-     * @param transaction
+     *
+     * @param transaction - transaction for processing
      * @return - validation result
      */
     boolean validateForProcessing(Transaction transaction);

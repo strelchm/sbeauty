@@ -6,6 +6,7 @@ public interface TransactionProcessor {
 
     /**
      * Transaction processor
+     *
      * @param transaction - transaction array
      */
     void processTransaction(Transaction transaction);

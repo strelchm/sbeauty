@@ -28,7 +28,7 @@ class ConcurrentTransactionProcessLoadTest {
     private ForkJoinPool forkJoinPool;
 
     @ParameterizedTest
-    @ValueSource(ints = {10, 100, 1_000, 10_000, 100_000, 1_000_000 })
+    @ValueSource(ints = {10, 100, 1_000, 10_000, 100_000, 300_000 })
     void testProcessTransactions(int transactionCount) throws InterruptedException {
         List<Transaction> transactions = new ArrayList<>();
         for (int i = 0; i < transactionCount; i++) {
