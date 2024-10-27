@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 import static com.bank.transactions.data.model.TransactionStatus.PENDING;
+import static com.bank.transactions.data.model.TransactionStatus.PROCESSED;
 
 public class Transaction {
     private static final int LARGE_TRANSACTION_AMOUNT_MIN = 10_000;
@@ -44,6 +45,10 @@ public class Transaction {
 
     public boolean isPending() {
         return PENDING == getStatus();
+    }
+
+    public boolean isProcessed() {
+        return PROCESSED == getStatus();
     }
 
     public boolean hasLargeAmount() {
