@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.bank.transactions.data.model.TransactionStatus.COMPLETED;
 import static com.bank.transactions.data.model.TransactionStatus.PENDING;
 import static com.bank.transactions.utils.RandomObjectGenerator.getRandomString;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -30,7 +31,9 @@ class TransactionProcessLoadTest {
         for (int i = 0; i < 1_000_000; i++) {
             transactions.add(new Transaction(getRandomString(), BigDecimal.valueOf(1000), LocalDate.parse("2023-04-05"), PENDING));
         }
-
+        for (int i = 0; i < 1_000_000; i++) {
+            transactions.add(new Transaction(getRandomString(), BigDecimal.valueOf(1000), LocalDate.parse("2023-04-05"), COMPLETED));
+        }
         assertDoesNotThrow(() -> transactionBatchProcessor.processTransactions(transactions));
     }
 }

@@ -30,7 +30,6 @@ public class TransactionProcessorImpl implements TransactionProcessor {
         this.validator = validator;
     }
 
-    //    @Async
     @Override
     public void processTransaction(Transaction transaction) {
         putMDCIfNeeded(transaction);
