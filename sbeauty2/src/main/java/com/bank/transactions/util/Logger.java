@@ -1,10 +1,8 @@
 
-package com.bank.transactions;
+package com.bank.transactions.util;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-@Slf4j
 @Component
 public class Logger {
 
