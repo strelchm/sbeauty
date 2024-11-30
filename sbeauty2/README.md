@@ -1,4 +1,4 @@
-# sbreackets2
+# Code beauty 2
 Task 4 SB challenge: transaction service on Spring
 
 **Technologies:**

@@ -19,7 +19,7 @@ public class SimpleTransactionRepository implements TransactionRepository {
     private final List<Transaction> transactions = new ArrayList<>();
 
     @Override
-    public void updateTransaction(Transaction transaction) {
+    public void upsertTransaction(Transaction transaction) {
         transactions.add(transaction);
     }
 

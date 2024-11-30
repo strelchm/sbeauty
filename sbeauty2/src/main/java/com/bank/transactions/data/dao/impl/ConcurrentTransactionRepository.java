@@ -19,7 +19,7 @@ public class ConcurrentTransactionRepository implements TransactionRepository {
     private final Map<String, Transaction> transactions = new ConcurrentReferenceHashMap<>(); // default reference type - soft
 
     @Override
-    public void updateTransaction(Transaction transaction) {
+    public void upsertTransaction(Transaction transaction) {
         transactions.put(transaction.getId(), transaction);
     }
 

@@ -11,7 +11,7 @@ import java.util.Collection;
 @Repository
 public interface TransactionRepository {
 
-    void updateTransaction(Transaction transaction);
+    void upsertTransaction(Transaction transaction);
 
     Collection<Transaction> getTransactions();
 }

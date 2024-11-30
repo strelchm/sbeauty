@@ -32,11 +32,11 @@ class TransactionProcessorImplUnitTest {
         when(validatorMock.validateForProcessing(any()))
                 .thenReturn(false);
 
-        Transaction transaction = new Transaction("", BigDecimal.valueOf(0), LocalDate.now(), PROCESSED);
+        Transaction transaction = new Transaction("", BigDecimal.ZERO, LocalDate.now(), PROCESSED);
         transactionProcessor.processTransaction(transaction);
 
         verify(repositoryMock, never())
-                .updateTransaction(transaction);
+                .upsertTransaction(transaction);
     }
 
     @Test
@@ -44,11 +44,11 @@ class TransactionProcessorImplUnitTest {
         when(validatorMock.validateForProcessing(any()))
                 .thenReturn(true);
 
-        Transaction transaction = new Transaction("", BigDecimal.valueOf(0), LocalDate.now(), PROCESSED);
+        Transaction transaction = new Transaction("", BigDecimal.ZERO, LocalDate.now(), PROCESSED);
         transactionProcessor.processTransaction(transaction);
 
         verify(repositoryMock)
-                .updateTransaction(transaction);
+                .upsertTransaction(transaction);
         assertEquals(PROCESSED, transaction.getStatus());
     }
 
@@ -58,13 +58,13 @@ class TransactionProcessorImplUnitTest {
                 .thenReturn(true);
         doThrow(new RuntimeException())
                 .when(repositoryMock)
-                .updateTransaction(any());
+                .upsertTransaction(any());
 
-        Transaction transaction = new Transaction("", BigDecimal.valueOf(0), LocalDate.now(), PROCESSED);
+        Transaction transaction = new Transaction("", BigDecimal.ZERO, LocalDate.now(), PROCESSED);
         transactionProcessor.processTransaction(transaction);
 
         verify(repositoryMock)
-                .updateTransaction(transaction);
+                .upsertTransaction(transaction);
         assertEquals(ERROR, transaction.getStatus());
     }
 }

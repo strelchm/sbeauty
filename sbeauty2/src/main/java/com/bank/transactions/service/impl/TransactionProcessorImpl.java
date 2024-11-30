@@ -37,7 +37,7 @@ public class TransactionProcessorImpl implements TransactionProcessor {
 
         try {
             transaction.setStatus(IN_PROGRESS);
-            repository.updateTransaction(transaction);
+            repository.upsertTransaction(transaction);
             transaction.setStatus(PROCESSED);
             logger.info("Transaction is processed");
         } catch (Exception ex) {
